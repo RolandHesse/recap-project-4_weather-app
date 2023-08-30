@@ -3,7 +3,7 @@ export default function Form({ onAddActivity }) {
     event.preventDefault();
     const dataObject = {
       name: event.target[0].value,
-      isGoodEwather: event.target[1].checked,
+      isForGoodWeather: event.target[1].checked,
     };
     // console.log("event: ", event);
     console.log("dataObject", dataObject);

@@ -1,7 +1,9 @@
-export default function Form({ id, name }) {
+export default function List({ activities }) {
   return (
     <ul>
-      <li key={id}>{name}</li>
+      {activities.map((activity) => (
+        <li key={activity.id}>{activity.name}</li>
+      ))}
     </ul>
   );
 }

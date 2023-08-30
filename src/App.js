@@ -6,9 +6,11 @@ import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([]);
-  function handleAddActivity(useDataObject) {
-    setActivities([{ id: uid(8), ...useDataObject }, activities]);
+  function handleAddActivity(dataObject) {
+    setActivities([{ id: uid(8), ...dataObject }, ...activities]);
   }
+
+  console.log(activities);
   return (
     <>
       <List activities={activities} />

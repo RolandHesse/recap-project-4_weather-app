@@ -10,6 +10,11 @@ function App() {
     defaultValue: [],
   });
 
+  function handleAddActivity(dataObject) {
+    setActivities([{ id: uid(8), ...dataObject }, ...activities]);
+  }
+  console.log("activities: ", activities);
+
   const [weather, setWeather] = useState();
 
   async function fetchWeather() {
@@ -28,8 +33,8 @@ function App() {
     fetchWeather();
   }, []);
 
-  function handleAddActivity(dataObject) {
-    setActivities([{ id: uid(8), ...dataObject }, ...activities]);
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id));
   }
 
   if (!weather) {
@@ -48,6 +53,7 @@ function App() {
       <List
         activities={filteredActivities}
         isGoodWeather={weather.isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleAddActivity} />
     </>

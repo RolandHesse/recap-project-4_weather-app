@@ -13,7 +13,7 @@ export default function Form({ onAddActivity }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
       <h2>Add new Activity</h2>
       <label htmlFor="activity-name">Activity</label>
       <input

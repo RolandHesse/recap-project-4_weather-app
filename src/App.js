@@ -11,7 +11,7 @@ function App() {
   });
 
   const [weather, setWeather] = useState();
-  // const weather = true;
+
   async function fetchWeather() {
     try {
       const response = await fetch(
@@ -23,27 +23,32 @@ function App() {
       console.error("An error occured.");
     }
   }
+
   useEffect(() => {
     fetchWeather();
-    console.log("Weather", weather);
-    console.log("SetWeather", setWeather);
   }, []);
 
   function handleAddActivity(dataObject) {
     setActivities([{ id: uid(8), ...dataObject }, ...activities]);
   }
 
+  if (!weather) {
+    return null;
+  }
+
   const filteredActivities = activities.filter(
-    (activity) => activity.isForGoodWeather === weather
+    (activity) => activity.isForGoodWeather === weather.isGoodWeather
   );
-
-  // console.log("filteredActivities: ", filteredActivities);
-
-  // console.log("activities: ", activities);
 
   return (
     <>
-      <List activities={filteredActivities} isGoodWeather={weather} />
+      <h1>
+        {weather.condition} {weather.temperature}
+      </h1>
+      <List
+        activities={filteredActivities}
+        isGoodWeather={weather.isGoodWeather}
+      />
       <Form onAddActivity={handleAddActivity} />
     </>
   );

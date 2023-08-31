@@ -1,4 +1,12 @@
 export default function List({ activities, isGoodWeather, onDeleteActivity }) {
+  function Button() {
+    return (
+      <button type="button" onClick={onDeleteActivity}>
+        x
+      </button>
+    );
+  }
+
   if (isGoodWeather) {
     return (
       <>
@@ -7,9 +15,7 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
           {activities.map((activity) => (
             <li key={activity.id}>
               {activity.name}
-              <button type="button" onClick={onDeleteActivity}>
-                X
-              </button>
+              <Button />
             </li>
           ))}
         </ul>
@@ -22,10 +28,7 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
         <ul>
           {activities.map((activity) => (
             <li key={activity.id}>
-              {activity.name}{" "}
-              <button type="button" onClick={onDeleteActivity}>
-                X
-              </button>
+              {activity.name} <Button />
             </li>
           ))}
         </ul>

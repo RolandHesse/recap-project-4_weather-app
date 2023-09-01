@@ -31,6 +31,8 @@ function App() {
 
   useEffect(() => {
     fetchWeather();
+    const interval = setInterval(fetchWeather, 7000);
+    return () => clearInterval(interval);
   }, []);
 
   function handleDeleteActivity(id) {
